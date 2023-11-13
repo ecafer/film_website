@@ -49,7 +49,7 @@
       <label for="title">Title:</label>
       <input type="text" id="title" name="title" required />
 
-      <label for="director">Genre:</label>
+      <label for="director">Director:</label>
       <input type="text" id="director" name="director" required />
 
       <label for="releaseYear">Release Year:</label>
@@ -74,12 +74,26 @@
     <script>
       function addMovie() {
         var title = document.getElementById("title").value;
-        var genre = document.getElementById("genre").value;
+        var director = document.getElementById("director").value;
         var releaseYear = document.getElementById("releaseYear").value;
+        var country = document.getElementById("country").value;
+        var myRating = document.getElementById("myRating").value;
+        var shortCheckbox = document.getElementById("short");
+        var short = shortCheckbox.checked ? "Short" : "Not Short";
 
         var movieList = document.getElementById("movieList");
         var newMovie = document.createElement("p");
-        newMovie.textContent = title + " - " + genre + " (" + releaseYear + ")";
+
+        newMovie.innerHTML = `<b><i>${title}</i></b>, 
+                        ${director}, 
+                        ${releaseYear}, 
+                        ${country}, 
+                        ${myRating}`;
+
+        if (short === "Short") {
+          newMovie.innerHTML += `, <i>short</i>`;
+        }
+
         movieList.appendChild(newMovie);
 
         // Clear the form after adding the movie

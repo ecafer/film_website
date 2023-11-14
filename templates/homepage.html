@@ -45,7 +45,7 @@
   <body>
     <h1>Movie Database</h1>
 
-    <form id="movieForm">
+    <form id="movieForm" method="POST" action="{{ url_for('enter_movie') }}">
       <label for="title">Title:</label>
       <input type="text" id="title" name="title" required />
 
@@ -65,41 +65,7 @@
         >Short? <input type="checkbox" id="short" name="short" required
       /></label>
 
-      <button type="button" onclick="addMovie()">Add Movie</button>
+      <button type="submit">Add Movie</button>
     </form>
-
-    <div id="movieList">
-      <!-- Movie list will appear here -->
-    </div>
-
-    <script>
-      function addMovie() {
-        var title = document.getElementById("title").value;
-        var director = document.getElementById("director").value;
-        var releaseYear = document.getElementById("releaseYear").value;
-        var country = document.getElementById("country").value;
-        var myRating = document.getElementById("myRating").value;
-        var shortCheckbox = document.getElementById("short");
-        var short = shortCheckbox.checked ? "Short" : "Not Short";
-
-        var movieList = document.getElementById("movieList");
-        var newMovie = document.createElement("p");
-
-        newMovie.innerHTML = `<b><i>${title}</i></b>, 
-                        ${director}, 
-                        ${releaseYear}, 
-                        ${country}, 
-                        ${myRating}`;
-
-        if (short === "Short") {
-          newMovie.innerHTML += `, <i>short</i>`;
-        }
-
-        movieList.appendChild(newMovie);
-
-        // Clear the form after adding the movie
-        document.getElementById("movieForm").reset();
-      }
-    </script>
   </body>
 </html>
